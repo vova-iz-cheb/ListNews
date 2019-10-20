@@ -1,0 +1,297 @@
+@import 'bootstrap-reboot.min';
+@import 'bootstrap-grid.min';
+@import 'fonts';
+@import 'fontello';
+
+// variables
+$primary: #080b79;
+$secondary: #d8f2fa;
+$hover: rgb(95, 0, 119);
+
+// placeholders
+%clear-list {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+%button {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid transparent;
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+%input {
+  border: 0;
+  border-radius: 5px;
+  outline: none;
+  padding-left: 10px;
+  transition: box-shadow .3s;
+  &:focus {
+    box-shadow: 0 0 2px 2px $hover;
+  }
+}
+
+html, body, #root {
+  height: 100%;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+.grow1 {
+  flex-grow: 1;
+}
+// my styles
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: $primary;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Merriweather', serif;
+}
+
+.modal-reg {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(51, 51, 51, 0.479);
+  overflow-y: auto;
+}
+
+.form-reg {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  max-width: 80%;
+  width: 400px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  &__login, &__password, &__password2, &__submit {
+    width: 100%;
+  }
+  &__login, &__password, &__password2 {
+    @extend %input;
+    border: 1px solid $hover;
+    margin-bottom: 10px;
+  }
+  &__submit {
+    @extend %button;
+    border-radius: 5px;
+    background-color: rgb(182, 250, 165);
+    transition: all .3s;
+    &:hover {
+      color: white;
+      background-color: rgb(97, 206, 70);
+    }
+    &:focus {
+      box-shadow: 0 0 2px 2px rgb(42, 121, 22);
+    }
+  }
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 2rem;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.header {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 1rem;
+  background-color: rgb(251, 210, 255);
+}
+
+.nav {
+  &__list {
+    @extend %clear-list;
+    padding-top: 10px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .3s;
+    &>:last-child {
+      border-bottom: 1px solid $hover;
+    }
+  }
+
+  &__item {
+    border: 1px solid $hover;
+    border-bottom: 0;
+  }
+
+  &__link {
+    display: block;
+    padding: 5px 10px;
+    color: $primary;
+    transition: color .3s, background-color .3s;
+    &:hover {
+      color: white;
+      background-color: $hover;
+    }
+    &.active {
+      color: white;
+      background-color: rgb(250, 84, 214);
+    }
+  }
+
+  &__toggler {
+    color: $primary;
+    transition: background-color 0.3s;
+    & i:hover {
+      color: $hover;
+    }
+  }
+}
+
+.form-auth {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 310px;
+  &__login, &__password, &__reg, &__submit {
+    flex: 0 0 100%;
+  }
+  &__login, &__password {
+    @extend %input;
+    margin-bottom: 10px;
+  }
+  &__submit, &__reg {
+    @extend %button;
+  }
+  &__submit {
+    border-radius: 5px;
+    background-color: rgb(182, 250, 165);
+    transition: all .3s;
+    margin-bottom: 10px;
+    &:hover {
+      color: white;
+      background-color: rgb(97, 206, 70);
+    }
+    &:focus {
+      box-shadow: 0 0 2px 2px rgb(42, 121, 22);
+    }
+  }
+  &__reg {
+    border-radius: 5px;
+    background-color: rgb(234, 248, 153);
+    transition: all .3s;
+    &:hover {
+      color: rgb(19, 17, 17);
+      background-color: rgb(200, 212, 30);
+    }
+    &:focus {
+      box-shadow: 0 0 2px 2px rgb(150, 160, 19);
+    }
+  }
+}
+
+.news {
+  @extend %clear-list;
+  &__item {
+    position: relative;
+  }
+  &__panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+
+
+.user-icon {
+  background-color: #fff;
+  width: 60px;
+  height: 60px;
+  background-image: url('../img/girl.png');
+  background-size: contain;
+  border-radius: 50%;
+}
+.user-icon2 {
+  background-color: #fff;
+  width: 60px;
+  height: 60px;
+  background-image: url('../img/man.png');
+  background-size: contain;
+  border-radius: 50%;
+}
+.user-icon1 {
+  background-color: #fff;
+  width: 60px;
+  height: 60px;
+  background-image: url('../img/anonymous.png');
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.footer {
+  padding-top: 1rem;
+  color: white;
+  background-color: $hover;
+}
+
+@media(min-width: 341px) {
+  .form-auth {
+    max-width: 310px;
+    &__login, &__password, &__reg, &__submit {
+      flex: 0 0 150px;
+    }
+    &__login {
+      margin-right: 10px;
+    }
+    &__login, &__password {
+      max-width: 150px;
+      margin-bottom: 10px;
+    }
+    &__submit {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .nav {
+    &__list {
+      max-height: 179px;
+      padding-top: 0;
+      display: flex;
+      &>:last-child {
+        border-bottom: 0;
+      }
+    }
+  
+    &__item {
+      border: 0;
+      margin-right: 10px;
+    }
+  
+    &__link {
+      border-radius: 5px;
+      &:hover {
+        color: white;
+        background-color: $hover;
+      }
+    }
+  }
+}
