@@ -1,4 +1,5 @@
 import React from 'react'
+import News from '../containers/News'
 
 export default () => {
   return (
@@ -7,6 +8,7 @@ export default () => {
         <div className="row">
           <div className="col">
             <h1>News:</h1>
+            <News />
           </div>
         </div>
       </main>

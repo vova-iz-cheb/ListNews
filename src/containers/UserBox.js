@@ -110,7 +110,6 @@ function showRegModal() {
 }
 
 function checkUser(login, pass, users) {
-  console.log(login,pass,users)
   const user = users.find( item => item.login === login && item.password === pass )
   
   if(user) {

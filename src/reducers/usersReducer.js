@@ -1,5 +1,4 @@
 import { ADD_USER, LOGIN, LOGOUT } from '../constants'
-import { log } from 'util'
 
 const initialState = {
   currentUserId: 0,
