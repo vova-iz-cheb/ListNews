@@ -114,6 +114,17 @@ h1,h2,h3,h4,h5,h6 {
       text-decoration: none;
     }
   }
+  &__error {
+    color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  label {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 }
 
 .header {
@@ -206,6 +217,51 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
+.user {
+  display: flex;
+  align-content: center;
+
+  &__icon-male, &__icon-female {
+    background-color: #fff;
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+    border-radius: 50%;
+    background-size: contain;
+  }
+  &__icon-male {
+    background-image: url('../img/man.png');
+  }
+  &__icon-female {
+    background-image: url('../img/girl.png');
+  }
+
+  p {
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+
+  &__logout {
+    display: block;
+    text-align: center;
+    color: $primary;
+    &:hover {
+      color:red;
+    }
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
 .news {
   @extend %clear-list;
   &__item {
@@ -216,33 +272,6 @@ h1,h2,h3,h4,h5,h6 {
     right: 0;
     top: 0;
   }
-}
-
-
-
-.user-icon {
-  background-color: #fff;
-  width: 60px;
-  height: 60px;
-  background-image: url('../img/girl.png');
-  background-size: contain;
-  border-radius: 50%;
-}
-.user-icon2 {
-  background-color: #fff;
-  width: 60px;
-  height: 60px;
-  background-image: url('../img/man.png');
-  background-size: contain;
-  border-radius: 50%;
-}
-.user-icon1 {
-  background-color: #fff;
-  width: 60px;
-  height: 60px;
-  background-image: url('../img/anonymous.png');
-  background-size: contain;
-  border-radius: 50%;
 }
 
 .footer {

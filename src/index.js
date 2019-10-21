@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
+import mainReducer from './reducers'
 import App from './components/App'
 
-const todoApp = function (state = {name: 'igor'}, action) {
-  return state;
-}
-
-const store = createStore(todoApp);
+const store = createStore(mainReducer);
 
 ReactDOM.render(
   <Router>

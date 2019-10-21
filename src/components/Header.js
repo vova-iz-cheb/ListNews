@@ -1,5 +1,5 @@
 import React from 'react'
-import UserBox from './UserBox'
+import UserBox from '../Containers/UserBox'
 import Nav from './Nav'
 
 export default () => {
