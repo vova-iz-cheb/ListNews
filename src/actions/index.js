@@ -27,22 +27,26 @@ export const logout = () => {
 export const createNews = ( {title, content, author} ) => {
   return {
     type: CREATE_NEWS,
-    id: nextNewsId++,
-    title,
-    content,
-    author,
-    timestamp: new Date().getTime()
+    news: {
+      id: nextNewsId++,
+      title,
+      content,
+      author,
+      timestamp: new Date().getTime()
+    }
   }
 }
 
-export const editNews = () => {
+export const editNews = (id) => {
   return {
-    type: EDIT_NEWS
+    type: EDIT_NEWS,
+    id
   }
 }
 
-export const deleteNews = () => {
+export const deleteNews = (id) => {
   return {
-    type: DELETE_NEWS
+    type: DELETE_NEWS,
+    id
   }
 }

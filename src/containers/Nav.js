@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default class extends Component {
+class Nav extends Component {
   componentDidMount() {
     const toggler = document.querySelector('.nav__toggler');
     toggler.addEventListener('click', toggleNavMenu);
@@ -11,7 +12,7 @@ export default class extends Component {
       const height = navMenu.scrollHeight;
 
       if(!navMenu.style.maxHeight) {
-        navMenu.style.maxHeight = height + 'px';
+        navMenu.style.maxHeight = height + 42 + 'px';
       } else {
         navMenu.style.maxHeight = '';
       }
@@ -34,10 +35,13 @@ export default class extends Component {
                   <i className="icon-home fa-lg"></i> Home
                 </NavLink>
               </li>
-              <li className="nav__item">
-                <NavLink to='/addnews' className="nav__link"><i className="icon-newspaper fa-lg"></i> Add News
-                </NavLink>
-              </li>
+              {this.props.isLogged ? 
+                <li className="nav__item">
+                  <NavLink to='/addnews' className="nav__link">
+                    <i className="icon-newspaper fa-lg"></i> Add News
+                  </NavLink>
+                </li> 
+                : null }
               <li className="nav__item">
                 <NavLink to='/setting' className="nav__link"><i className="icon-cog fa-lg"></i> Setting
                 </NavLink>
@@ -53,3 +57,16 @@ export default class extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  const userId = state.users.currentUserId;
+  const isLogged = userId ? true : false;
+
+  return {
+    isLogged
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(Nav)

@@ -29,6 +29,27 @@ const initialState = {
 
 const news = (state = initialState, action) => {
   switch (action.type) {
+    case CREATE_NEWS:
+      return {
+        editableNewsId: state.editableNewsId,
+        allNews: [
+          ...state.allNews,
+          action.news
+        ]
+      }
+    case EDIT_NEWS:
+      console.log(action.id);
+      return state;
+
+    case DELETE_NEWS:
+      const allNews = state.allNews.filter( (item) => {
+        if(item.id === action.id) return false;
+        return true;
+      });
+      return {
+        ...state,
+        allNews
+      };
 
     default:
       return state

@@ -249,18 +249,7 @@ h1,h2,h3,h4,h5,h6 {
       color:red;
     }
   }
-
-
 }
-
-
-
-
-
-
-
-
-
 
 .news {
   @extend %clear-list;
@@ -271,6 +260,44 @@ h1,h2,h3,h4,h5,h6 {
     position: absolute;
     right: 0;
     top: 0;
+  }
+  &__header {
+    margin-right: 60px;
+  }
+}
+
+.addnews {
+  &__title, &__content {
+    @extend %input;
+    width: 100%;
+    border: 1px solid $primary;
+    margin-bottom: 1rem;
+  }
+  &__content {
+    height: 300px;
+  }
+  &__submit {
+    @extend %button;
+    padding: 10px 20px;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    background-color: rgb(182, 250, 165);
+    transition: all .3s;
+    &:hover {
+      color: white;
+      background-color: rgb(97, 206, 70);
+    }
+    &:focus {
+      box-shadow: 0 0 2px 2px rgb(42, 121, 22);
+    }
+  }
+
+  &__error {
+    color: red;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
   }
 }
 

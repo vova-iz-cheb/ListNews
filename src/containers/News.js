@@ -3,30 +3,34 @@ import { connect } from 'react-redux'
 import { editNews, deleteNews } from '../actions'
 
 class News extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
 
   render() {
-    const { news } = this.props;
+    const { isLogged, news, editNews, deleteNews } = this.props;
 
     if(! news.length ) return <p>К сожалению новостей нет.</p>
-
-    
 
     const newsJsx = news.map( item => {
       const date = getDateString(item.timestamp);
       return (
         <li key={item.id} className='news__item'>
-          {/* <div class="news__panel">
-            <a href="" class="news__edit"><i class="icon-pencil fa-lg"></i></a>
-            <a href="" class="news__delete"><i class="icon-trash-empty fa-lg"></i></a>
-          </div> */}
+          { isLogged ? 
+            (<div className="news__panel">
+              <a onClick={
+                (e) => {
+                  e.preventDefault();
+                  editNews(item.id);
+                }
+              } href="" className="news__edit"><i className="icon-pencil fa-lg"></i></a>
+              <a onClick={
+                (e) => {
+                  e.preventDefault();
+                  deleteNews(item.id);
+                }
+              } href="" className="news__delete"><i className="icon-trash-empty fa-lg"></i></a>
+            </div>)
+            : null }
           <article>
-              <h2>{item.title}</h2>
+              <h2 className='news__header'>{item.title}</h2>
               <p>{item.content}</p>
               <footer>
                 <p>Автор: <span>{item.author}</span></p>
@@ -55,13 +59,23 @@ function getDateString(timestamp) {
 }
 
 const mapStateToProps = (state) => {
+  const userId = state.users.currentUserId;
+  const isLogged = userId ? true : false;
+
   return {
+    isLogged,
     news: state.news.allNews
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    editNews: (id) => {
+      dispatch(editNews(id))
+    },
+    deleteNews: (id) => {
+      dispatch(deleteNews(id))
+    }
   }
 }
 
