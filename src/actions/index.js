@@ -1,4 +1,4 @@
-import { ADD_USER, LOGIN, LOGOUT, CREATE_NEWS, EDIT_NEWS, DELETE_NEWS } from '../constants'
+import { ADD_USER, LOGIN, LOGOUT, CREATE_NEWS, SPECIFY_EDITABLE_NEWS, EDIT_NEWS, DELETE_NEWS } from '../constants'
 
 let nextUserId = 2; // 0 - anonymous, 1 - admin
 let nextNewsId = 4;
@@ -37,10 +37,17 @@ export const createNews = ( {title, content, author} ) => {
   }
 }
 
-export const editNews = (id) => {
+export const specifyEditableNews = (id) => {
+  return {
+    type: SPECIFY_EDITABLE_NEWS,
+    id
+  }
+}
+
+export const editNews = (news) => {
   return {
     type: EDIT_NEWS,
-    id
+    news
   }
 }
 

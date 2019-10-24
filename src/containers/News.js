@@ -1,32 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { editNews, deleteNews } from '../actions'
+import { specifyEditableNews, deleteNews } from '../actions'
+import { NavLink } from 'react-router-dom'
 
 class News extends Component {
+  deleteNews = (e, id) => {
+    e.preventDefault();
+    const result = confirm('Вы действительно ходитите удалить новость?');
+    result ? this.props.deleteNews(id) : null;
+  }
 
   render() {
-    const { isLogged, news, editNews, deleteNews } = this.props;
+    const { isLogged, news, specifyEditableNews } = this.props;
 
     if(! news.length ) return <p>К сожалению новостей нет.</p>
 
-    const newsJsx = news.map( item => {
+    let cloneNews = [...news];
+    cloneNews.reverse();
+    const newsJsx = cloneNews.map( item => {
       const date = getDateString(item.timestamp);
       return (
         <li key={item.id} className='news__item'>
           { isLogged ? 
             (<div className="news__panel">
-              <a onClick={
-                (e) => {
-                  e.preventDefault();
-                  editNews(item.id);
+              <NavLink onClick={
+                () => {
+                  specifyEditableNews(item.id);
                 }
-              } href="" className="news__edit"><i className="icon-pencil fa-lg"></i></a>
-              <a onClick={
-                (e) => {
-                  e.preventDefault();
-                  deleteNews(item.id);
-                }
-              } href="" className="news__delete"><i className="icon-trash-empty fa-lg"></i></a>
+              } to='/editnews' className="news__edit"><i className="icon-pencil fa-lg"></i></NavLink>
+              <a onClick={(e) => this.deleteNews(e, item.id)} href="" className="news__delete"><i className="icon-trash-empty fa-lg"></i></a>
             </div>)
             : null }
           <article>
@@ -70,11 +72,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    editNews: (id) => {
-      dispatch(editNews(id))
-    },
     deleteNews: (id) => {
       dispatch(deleteNews(id))
+    },
+    specifyEditableNews: (id) => {
+      dispatch(specifyEditableNews(id))
     }
   }
 }

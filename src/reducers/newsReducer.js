@@ -1,4 +1,4 @@
-import { CREATE_NEWS, EDIT_NEWS, DELETE_NEWS } from '../constants'
+import { CREATE_NEWS, SPECIFY_EDITABLE_NEWS, EDIT_NEWS, DELETE_NEWS } from '../constants'
 
 const initialState = {
   editableNewsId: 0, // 0 - not editable news
@@ -37,9 +37,22 @@ const news = (state = initialState, action) => {
           action.news
         ]
       }
+
+    case SPECIFY_EDITABLE_NEWS:
+      return {
+        ...state,
+        editableNewsId: action.id
+      }
+
     case EDIT_NEWS:
-      console.log(action.id);
-      return state;
+      let cloneAllNews = [...state.allNews];
+      const index = cloneAllNews.findIndex(item => item.id === action.news.id);
+
+      cloneAllNews.splice(index, 1, action.news);
+      return {
+        ...state,
+        allNews: cloneAllNews
+      }
 
     case DELETE_NEWS:
       const allNews = state.allNews.filter( (item) => {
